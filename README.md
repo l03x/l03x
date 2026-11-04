@@ -2,4 +2,6 @@
 I rebuild things that already work, worse, from scratch, one layer lower than anyone asked for.
 
 
-![](life.svg)
+<p align="center">
+  <img src="life.svg" alt="Game of Life">
+</p>
