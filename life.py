@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Conway's Game of Life on a contribution-graph-shaped board, rendered as a
-self-animating SVG (light mode).
+self-animating SVG that works on GitHub's light and dark themes.
 
   python3 life.py                       # seed from l03x's contribution calendar
   python3 life.py --seed pattern        # seed from PATTERN below
@@ -37,8 +37,11 @@ PATTERN = [
 # ---- style ---------------------------------------------------------------
 CELL, GAP, RADIUS = 10, 3, 2
 # cell colour by age: newborn -> long-lived (index 0..3)
-LIGHT = {"bg": "#ffffff", "empty": "#ebedf0",
-         "age": ["#9be9a8", "#40c463", "#30a14e", "#216e39"]}
+# One palette for both GitHub themes: transparent background, a grey empty
+# cell that reads on white and on #0d1117, and mid-tone ramps whose lightest
+# and darkest steps both stay visible on either background.
+EMPTY = "fill:#808080;fill-opacity:.18"
+AGE = ["#7ee787", "#3fb950", "#2ea043", "#1a7f37"]
 
 # Cells added when the seed fizzles out (game ends within MIN_GEN steps).
 # These all run long on a 53x7 torus.
@@ -50,7 +53,7 @@ EXTRA_PATTERNS = {
     "acorn":  [".#.....", "...#...", "##..###"],      # acorn, ~50 gens of chaos
 }
 # colour of the added cells (and their descendants), by age
-EXTRA_AGE = ["#c8e1ff", "#79b8ff", "#2188ff", "#005cc5"]
+EXTRA_AGE = ["#a5d6ff", "#79c0ff", "#388bfd", "#1f6feb"]
 
 GH_USER = "l03x"
 
@@ -177,8 +180,8 @@ def render(frames):
            "<style>",
            f".f{{visibility:hidden;animation:show {total}s step-end infinite}}",
            f"@keyframes show{{0%{{visibility:visible}}{pct:.4f}%,100%{{visibility:hidden}}}}",
-           f".e{{fill:{LIGHT['empty']}}}" + "".join(
-               f".a{i}{{fill:{col}}}" for i, col in enumerate(LIGHT["age"])) + "".join(
+           f".e{{{EMPTY}}}" + "".join(
+               f".a{i}{{fill:{col}}}" for i, col in enumerate(AGE)) + "".join(
                f".b{i}{{fill:{col}}}" for i, col in enumerate(EXTRA_AGE)),
            "</style>",
            f'<path class="e" d="{cell_path(all_cells)}"/>']
