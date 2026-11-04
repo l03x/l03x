@@ -44,6 +44,8 @@ COLOR = {"s": "#3fb950", "x": "#808080", "g": "#58a6ff"}
 OPACITY = {"s": 1, "x": .55, "g": 1}
 
 SEED = 3
+# displayed width in px; 686 = life.svg (53 cells x 13 px - 3 px gap)
+TARGET_WIDTH = 686
 
 
 def build_grid():
@@ -172,8 +174,9 @@ def render(intro, loop, target, w, h):
         css.append(f"@keyframes k{r}{{{''.join(steps)}100%{{visibility:{'hidden' if prev else 'visible'}}}}}")
         css.append(f".r{r}{{animation:k{r} {t_loop}s step-end {t_intro}s infinite}}")
 
+    scale = TARGET_WIDTH / W
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} {H:.0f}" '
-           f'width="{W:.0f}" height="{H:.0f}" xml:space="preserve">',
+           f'width="{TARGET_WIDTH}" height="{H * scale:.0f}" xml:space="preserve">',
            "<style>" + "".join(css) + "</style>"]
     for i, fr in enumerate(intro):
         out.append(f'<g class="i" style="animation-delay:{i * FRAME_MS / 1000:.3f}s">'
