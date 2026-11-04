@@ -53,7 +53,7 @@ EXTRA_PATTERNS = {
     "acorn":  [".#.....", "...#...", "##..###"],      # acorn, ~50 gens of chaos
 }
 # colour of the added cells (and their descendants), by age
-EXTRA_AGE = ["#ff8fb5", "#ff4d8f", "#f80766", "#b8054b"]
+EXTRA_AGE = ["#a5d6ff", "#79c0ff", "#388bfd", "#1f6feb"]
 
 GH_USER = "l03x"
 
