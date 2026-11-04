@@ -26,7 +26,7 @@ ART = [
     '"   "8888888*    "88X   88*`   \'*8"`   9888%  X88% : \'%8888"',
     '      ^"**""       ^"==="`       `~===*%"`     "*=~    `""',
 ]
-PAD_X, PAD_Y = 3, 1          # extra random cells around the art (they settle to blank)
+PAD_X, PAD_Y = 10, 1          # extra random cells around the art (they settle to blank)
 
 CHARSET = "!#$%&*+-/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_{|}~"
 FRAME_MS = 70
