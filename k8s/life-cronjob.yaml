@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: life
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: life
+  namespace: life
+spec:
+  schedule: "17 6 * * *"            # daily, 06:17
+  timeZone: "Africa/Casablanca"
+  concurrencyPolicy: Forbid          # never two runs pushing at once
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2                # retry a failed run twice
+      activeDeadlineSeconds: 300     # kill a stuck run after 5 min
+      ttlSecondsAfterFinished: 86400 # clean up finished jobs after a day
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: life
+              image: ghcr.io/l03x/life:latest
+              imagePullPolicy: Always   # :latest, so always pick up the newest build
+              envFrom:
+                - secretRef:
+                    name: life-github   # provides GH_TOKEN
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 64Mi
+                limits:
+                  cpu: 500m
+                  memory: 128Mi
