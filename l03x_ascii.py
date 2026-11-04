@@ -26,7 +26,7 @@ ART = [
     '"   "8888888*    "88X   88*`   \'*8"`   9888%  X88% : \'%8888"',
     '      ^"**""       ^"==="`       `~===*%"`     "*=~    `""',
 ]
-PAD_X, PAD_Y = 10, 1          # extra random cells around the art (they settle to blank)
+PAD_X, PAD_Y = 3, 1          # extra random cells around the art (they settle to blank)
 
 CHARSET = "!#$%&*+-/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_{|}~"
 FRAME_MS = 70
@@ -40,7 +40,7 @@ GLITCH_LEN = (1, 4)          # frames a glitch lasts
 FONT_PX, CHAR_W, LINE_H = 14, 8.4, 16
 # colours readable on both GitHub themes (transparent background)
 # s = settled name, x = scrambling, g = glitch (short names keep the file small)
-COLOR = {"s": "#3fb950", "x": "#808080", "g": "#58a6ff"}
+COLOR = {"s": "#f80766", "x": "#808080", "g": "#ff8fb5"}
 OPACITY = {"s": 1, "x": .55, "g": 1}
 
 SEED = 3
